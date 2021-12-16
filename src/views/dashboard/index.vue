@@ -1,9 +1,8 @@
 <template>
   <div class="dashboard-editor-container">
-
     <Overview />
 
-    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
+    <el-row style="background: #fff; padding: 16px 16px 0; margin-bottom: 32px">
       <ProfitAndTaskChart />
     </el-row>
 
@@ -26,7 +25,14 @@
     </el-row>
 
     <el-row :gutter="32">
-      <el-col :xs="{span: 24}" :sm="{span: 24}" :md="{span: 24}" :lg="{span: 16}" :xl="{span: 16}" style="margin-bottom:30px;">
+      <el-col
+        :xs="{ span: 24 }"
+        :sm="{ span: 24 }"
+        :md="{ span: 24 }"
+        :lg="{ span: 16 }"
+        :xl="{ span: 16 }"
+        style="margin-bottom: 30px"
+      >
         <TaskTable />
       </el-col>
       <el-col :xs="24" :sm="24" :lg="8">
@@ -59,11 +65,9 @@ export default {
     TaskTable
   },
   data() {
-    return {
-    }
+    return {}
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>
 
@@ -87,7 +91,7 @@ export default {
   }
 }
 
-@media (max-width:1024px) {
+@media (max-width: 1024px) {
   .chart-wrapper {
     padding: 8px;
   }

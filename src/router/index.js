@@ -56,6 +56,17 @@ export const constantRoutes = [
   },
 
   {
+    path: '/task',
+    component: Layout,
+    children: [{
+      path: 'to-be-accepted',
+      name: 'ToBeAccepted',
+      component: () => import('@/views/task/to-be-accepted'),
+      meta: { title: '待接受的任务', icon: 'list' }
+    }]
+  },
+
+  {
     path: '/monitor',
     component: Layout,
     children: [{
