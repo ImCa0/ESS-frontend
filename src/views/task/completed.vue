@@ -14,17 +14,17 @@
           <span>{{ $index + 1 }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="订单编号" width="150px" align="center">
+      <el-table-column label="订单编号" width="120px" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.orderNumber }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="任务编号" width="150px" align="center">
+      <el-table-column label="任务编号" width="120px" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.taskNumber }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="任务名称" width="150px" align="center">
+      <el-table-column label="任务名称" width="120px" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.taskName }}</span>
         </template>
@@ -34,30 +34,29 @@
           <span>{{ row.taskDescription }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="价格" width="150px" align="center">
+      <el-table-column label="价格" width="120px" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.price }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="交货期" width="150px" align="center">
+      <el-table-column label="交货期" width="120px" align="center">
         <template slot-scope="{ row }">
           <span>{{ row.deliveryDate }}</span>
         </template>
       </el-table-column>
-
-      <el-table-column
-        label="操作"
-        align="center"
-        width="200px"
-        class-name="small-padding fixed-width"
-      >
+      <el-table-column label="合格率" width="120px" align="center">
         <template slot-scope="{ row }">
-          <el-button type="primary" size="mini" @click="accept(row)">
-            接受
-          </el-button>
-          <el-button type="danger" size="mini" @click="decline(row)">
-            拒绝
-          </el-button>
+          <span>{{ row.qualifiedRate }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="废品率" width="120px" align="center">
+        <template slot-scope="{ row }">
+          <span>{{ row.rejectRate }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="发货信息" width="120px" align="center">
+        <template slot-scope="{ row }">
+          <span>{{ row.shippingInfo }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -73,11 +72,11 @@
 </template>
 
 <script>
-import { fetchToBeAcceptedList, acceptTask, declineTask } from '@/api/task'
+import { fetchCompletedList } from '@/api/task'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 
 export default {
-  name: 'ToBeAcceptedTable',
+  name: 'CompletedTable',
   components: { Pagination },
   data() {
     return {
@@ -98,7 +97,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchToBeAcceptedList(this.listQuery).then((response) => {
+      fetchCompletedList(this.listQuery).then((response) => {
         this.list = response.data.list
         this.total = response.data.total
 
@@ -106,34 +105,6 @@ export default {
         setTimeout(() => {
           this.listLoading = false
         }, 0.5 * 1000)
-      })
-    },
-    accept(row) {
-      acceptTask(row).then(() => {
-        this.$notify({
-          title: '成功',
-          message: '接受成功',
-          type: 'success',
-          duration: 2000
-        })
-        fetchToBeAcceptedList(this.listQuery).then((response) => {
-          this.list = response.data.list
-          this.total = response.data.total
-        })
-      })
-    },
-    decline(row) {
-      declineTask(row).then(() => {
-        this.$notify({
-          title: '成功',
-          message: '拒绝成功',
-          type: 'success',
-          duration: 2000
-        })
-        fetchToBeAcceptedList(this.listQuery).then((response) => {
-          this.list = response.data.list
-          this.total = response.data.total
-        })
       })
     }
   }

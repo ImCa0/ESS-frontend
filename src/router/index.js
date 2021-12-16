@@ -76,6 +76,12 @@ export const constantRoutes = [
         name: 'Processing',
         component: () => import('@/views/task/processing'),
         meta: { title: '正在加工的任务', icon: 'list' }
+      },
+      {
+        path: 'completed',
+        name: 'Completed',
+        component: () => import('@/views/task/completed'),
+        meta: { title: '已完成的任务', icon: 'list' }
       }
     ]
   },

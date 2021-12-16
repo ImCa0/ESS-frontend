@@ -31,3 +31,11 @@ export function fetchProcessingList(params) {
     params: params
   })
 }
+
+export function fetchCompletedList(params) {
+  return request({
+    url: '/task/completed',
+    method: 'get',
+    params: params
+  })
+}
