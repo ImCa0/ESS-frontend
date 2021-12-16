@@ -47,45 +47,62 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: '首页', icon: 'dashboard' }
-    }]
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/index'),
+        meta: { title: '首页', icon: 'dashboard' }
+      }
+    ]
   },
-
   {
     path: '/task',
     component: Layout,
-    children: [{
-      path: 'to-be-accepted',
-      name: 'ToBeAccepted',
-      component: () => import('@/views/task/to-be-accepted'),
-      meta: { title: '待接受的任务', icon: 'list' }
-    }]
+    name: 'Task',
+    meta: {
+      title: '制造任务模块',
+      icon: 'table'
+    },
+    children: [
+      {
+        path: 'to-be-accepted',
+        name: 'ToBeAccepted',
+        component: () => import('@/views/task/to-be-accepted'),
+        meta: { title: '待接受的任务', icon: 'list' }
+      },
+      {
+        path: 'processing',
+        name: 'Processing',
+        component: () => import('@/views/task/processing'),
+        meta: { title: '正在加工的任务', icon: 'list' }
+      }
+    ]
   },
 
   {
     path: '/monitor',
     component: Layout,
-    children: [{
-      path: '',
-      name: 'Monitor',
-      component: () => import('@/views/monitor/index'),
-      meta: { title: '监管模块', icon: 'monitor' }
-    }]
+    children: [
+      {
+        path: '',
+        name: 'Monitor',
+        component: () => import('@/views/monitor/index'),
+        meta: { title: '监管模块', icon: 'monitor' }
+      }
+    ]
   },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  })
 
 const router = createRouter()
 

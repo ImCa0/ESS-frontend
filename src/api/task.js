@@ -23,3 +23,11 @@ export function declineTask(data) {
     data
   })
 }
+
+export function fetchProcessingList(params) {
+  return request({
+    url: '/task/processing',
+    method: 'get',
+    params: params
+  })
+}
