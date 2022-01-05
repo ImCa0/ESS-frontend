@@ -46,12 +46,11 @@
       </el-table-column>
       <el-table-column label="加工进度" width="200px" align="center">
         <template slot-scope="{ row }">
-          <!-- eslint-disable-next-line -->
           <el-progress
             :text-inside="true"
             :stroke-width="26"
             :percentage="row.progress"
-          ></el-progress>
+          />
         </template>
       </el-table-column>
       <el-table-column label="预计剩余时间（h）" width="100px" align="center">
