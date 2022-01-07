@@ -56,6 +56,30 @@ export const constantRoutes = [
       }
     ]
   },
+
+  {
+    path: '/resource',
+    component: Layout,
+    meta: {
+      title: '制造资源模块',
+      icon: 'table'
+    },
+    children: [
+      {
+        path: 'type',
+        name: 'ResourceType',
+        component: () => import('@/views/resource-type/index'),
+        meta: { title: '资源类型模块', icon: 'list' }
+      },
+      {
+        path: '',
+        name: 'Resource',
+        component: () => import('@/views/resource/index'),
+        meta: { title: '资源实例模块', icon: 'list' }
+      }
+    ]
+  },
+
   {
     path: '/task',
     component: Layout,
