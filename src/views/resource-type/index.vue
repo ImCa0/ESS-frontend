@@ -122,18 +122,10 @@
           <el-button size="mini" type="primary" @click="handleUpdate(row)">
             编辑
           </el-button>
-          <!-- <el-button
-            size="mini"
-            type="success"
-            @click="handleFetchProp(row.rtName, row.eid)"
-          >
+          <el-button size="mini" type="success" @click="handleProp(row)">
             属性
-          </el-button> -->
-          <el-button
-            size="mini"
-            type="danger"
-            @click="handleDelete(row)"
-          >
+          </el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(row)">
             删除
           </el-button>
         </template>
@@ -148,7 +140,9 @@
       @pagination="getList"
     />
 
-    <Dialog ref="dialog" :status="dialogStatus" />
+    <EditResourceDlg ref="createAndUpdateDlg" :status="createOrUpdate" />
+
+    <PropertyDlg ref="propertyDlg" />
   </div>
 </template>
 
@@ -156,10 +150,11 @@
 import { fetchList, deleteResourceType } from '@/api/resource-type'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
-import Dialog from './components/dialog'
+import EditResourceDlg from './components/editResourceDlg.vue'
+import PropertyDlg from './components/propertyDlg.vue'
 export default {
   name: 'ResourceTypeList',
-  components: { Pagination, Dialog },
+  components: { Pagination, EditResourceDlg, PropertyDlg },
   data() {
     return {
       list: [],
@@ -187,7 +182,7 @@ export default {
         { label: 'ID递减', key: '-id' }
       ],
       listLoading: true,
-      dialogStatus: ''
+      createOrUpdate: ''
     }
   },
   created() {
@@ -210,9 +205,9 @@ export default {
     },
     parseTime,
     handleCreate() {
-      this.dialogStatus = 'create'
-      this.$refs.dialog.visible = true
-      this.$refs.dialog.form = {
+      this.createOrUpdate = 'create'
+      this.$refs.createAndUpdateDlg.visible = true
+      this.$refs.createAndUpdateDlg.form = {
         name: '',
         type: '',
         tag: '',
@@ -220,9 +215,13 @@ export default {
       }
     },
     handleUpdate(row) {
-      this.dialogStatus = 'update'
-      this.$refs.dialog.visible = true
-      this.$refs.dialog.form = Object.assign({}, row)
+      this.createOrUpdate = 'update'
+      this.$refs.createAndUpdateDlg.visible = true
+      this.$refs.createAndUpdateDlg.form = Object.assign({}, row)
+    },
+    handleProp(row) {
+      this.$refs.propertyDlg.visible = true
+      this.$refs.propertyDlg.resourceType = row
     },
     handleDelete(row) {
       deleteResourceType(row).then((response) => {

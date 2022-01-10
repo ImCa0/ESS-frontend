@@ -1,9 +1,5 @@
 <template>
-  <el-dialog
-    :title="title[status]"
-    :visible.sync="visible"
-    width="550px"
-  >
+  <el-dialog :title="title[status]" :visible.sync="visible" width="550px">
     <el-form
       ref="dataForm"
       :rules="rules"
@@ -41,7 +37,12 @@
 
     <div slot="footer" class="dialog-footer">
       <el-button @click="visible = false"> 取消 </el-button>
-      <el-button type="primary" @click="status === 'create' ? handleCreate() : handleUpdate()"> 确认 </el-button>
+      <el-button
+        type="primary"
+        @click="status === 'create' ? handleCreate() : handleUpdate()"
+      >
+        确认
+      </el-button>
     </div>
   </el-dialog>
 </template>
@@ -49,7 +50,7 @@
 <script>
 import { updateResourceType, createResourceType } from '@/api/resource-type'
 export default {
-  name: 'Dialog',
+  name: 'CreateAndUpdateDlg',
   props: {
     status: {
       type: String,
@@ -63,8 +64,12 @@ export default {
         update: '编辑制造资源类型'
       },
       rules: {
-        name: [{ required: true, message: '请输入类型名称', trigger: 'change' }],
-        type: [{ required: true, message: '请选择所属根类型', trigger: 'change' }]
+        name: [
+          { required: true, message: '请输入类型名称', trigger: 'change' }
+        ],
+        type: [
+          { required: true, message: '请选择所属根类型', trigger: 'change' }
+        ]
       },
       form: {
         name: '',
