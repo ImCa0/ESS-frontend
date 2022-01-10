@@ -38,8 +38,13 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="操作" align="center" width="250" class-name="small-padding fixed-width">
-          <template slot-scope="{row}">
+        <el-table-column
+          label="操作"
+          align="center"
+          width="250"
+          class-name="small-padding fixed-width"
+        >
+          <template slot-scope="{ row }">
             <el-button type="primary" size="mini" @click="handleUpdate(row)">
               编辑
             </el-button>
@@ -56,7 +61,11 @@
 </template>
 
 <script>
-import { fetchPresetProperty, fetchById, deleteProperty } from '@/api/resource-type'
+import {
+  fetchPresetProperty,
+  fetchById,
+  deleteProperty
+} from '@/api/resource-type'
 import EditPropertyDlg from './editPropertyDlg.vue'
 export default {
   name: 'PropertyDlg',

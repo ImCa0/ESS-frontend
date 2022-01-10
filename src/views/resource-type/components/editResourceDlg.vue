@@ -64,12 +64,8 @@ export default {
         update: '编辑制造资源类型'
       },
       rules: {
-        name: [
-          { required: true, message: '请输入类型名称', trigger: 'change' }
-        ],
-        type: [
-          { required: true, message: '请选择所属根类型', trigger: 'change' }
-        ]
+        name: [{ required: true, message: '请输入类型名称', trigger: 'blur' }],
+        type: [{ required: true, message: '请选择所属根类型', trigger: 'blur' }]
       },
       form: {
         name: '',

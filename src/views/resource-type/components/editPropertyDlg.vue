@@ -1,7 +1,6 @@
 <template>
   <el-dialog :title="title[status]" :visible.sync="visible" width="550px">
     <el-form
-      ref="dataForm"
       :rules="rules"
       :model="form"
       label-position="left"
@@ -46,9 +45,7 @@
       <el-button @click="visible = false"> 取消 </el-button>
       <el-button
         type="primary"
-        @click="
-          status === 'create' ? handleCreate() : handleUpdate()
-        "
+        @click="status === 'create' ? handleCreate() : handleUpdate()"
       >
         确认
       </el-button>
@@ -67,11 +64,9 @@ export default {
         update: '编辑属性'
       },
       rules: {
-        name: [
-          { required: true, message: '请输入类型名称', trigger: 'change' }
-        ],
+        name: [{ required: true, message: '请输入类型名称', trigger: 'blur' }],
         identifier: [
-          { required: true, message: '请选择所属根类型', trigger: 'change' }
+          { required: true, message: '请选择所属根类型', trigger: 'blur' }
         ]
       },
       visible: false,

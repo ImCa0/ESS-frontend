@@ -122,7 +122,7 @@
           <el-button size="mini" type="primary" @click="handleUpdate(row)">
             编辑
           </el-button>
-          <el-button size="mini" type="success" @click="handleProp(row)">
+          <el-button size="mini" type="success" @click="handleProperty(row)">
             属性
           </el-button>
           <el-button size="mini" type="danger" @click="handleDelete(row)">
@@ -219,9 +219,9 @@ export default {
       this.$refs.createAndUpdateDlg.visible = true
       this.$refs.createAndUpdateDlg.form = Object.assign({}, row)
     },
-    handleProp(row) {
+    handleProperty(row) {
       this.$refs.propertyDlg.visible = true
-      this.$refs.propertyDlg.resourceType = row
+      this.$refs.propertyDlg.resourceType = Object.assign({}, row)
     },
     handleDelete(row) {
       deleteResourceType(row).then((response) => {
