@@ -119,6 +119,13 @@ export const constantRoutes = [
         name: 'Monitor',
         component: () => import('@/views/monitor/index'),
         meta: { title: '监管模块', icon: 'monitor' }
+      },
+      {
+        path: '/monitor/:uuid',
+        hidden: true,
+        name: 'Detail',
+        component: () => import('@/views/monitor/detail'),
+        meta: { title: '监管模块', icon: 'monitor' }
       }
     ]
   },
