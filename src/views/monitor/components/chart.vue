@@ -40,7 +40,8 @@ export default {
   },
   data() {
     return {
-      baseUrl: 'http://localhost:5000/query/MQTT',
+      baseUrl: 'http://localhost:5000/query/MQTT', // dev
+      // baseUrl: 'http://101.132.32.165:5000/query/MQTT', // prov
       queryParam: '?start=-5m&stop=0m',
       chart: null,
       timer: null,
@@ -119,6 +120,7 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
+      this.setOptions()
     },
     update() {
       fetch(this.fullUrl)
